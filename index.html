@@ -1,1 +1,717 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/mylogo.png"/><link rel="manifest" href="/manifest.json"/><title>Vishal Paul</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"><script defer="defer" src="/static/js/main.cf2320f5.js"></script><link href="/static/css/main.b61265c8.css" rel="stylesheet"></head><body class="font-sans"><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishal Paul - Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=Fraunces:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #141824;
+            --bg-card: #1a1f2e;
+            --accent-primary: #00d9ff;
+            --accent-secondary: #ff6b35;
+            --text-primary: #ffffff;
+            --text-secondary: #a8b2d1;
+            --text-muted: #6b7589;
+            --border-color: rgba(0, 217, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fraunces', serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 217, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 107, 53, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+            animation: fadeInUp 1s ease-out;
+            padding-bottom: 5rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 24px;
+            opacity: 0.15;
+            filter: blur(30px);
+            z-index: -1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            display: block;
+        }
+
+        .hero-text h1 {
+            font-family: 'Archivo', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .tagline {
+            font-family: 'Archivo', sans-serif;
+            font-size: 1.25rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-family: 'Archivo', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+            opacity: 0.3;
+            transition: left 0.5s ease;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+        }
+
+        section {
+            padding: 6rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Archivo', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .bio-content {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bio-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+            opacity: 0.05;
+            border-radius: 50%;
+        }
+
+        .bio-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .expertise-item {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+
+        .expertise-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .expertise-item:hover {
+            transform: translateX(8px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.15);
+        }
+
+        .expertise-item h3 {
+            font-family: 'Archivo', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-primary);
+        }
+
+        .expertise-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        .items-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .items-list li {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .items-list li::before {
+            content: '→';
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%) translateX(-10px);
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .items-list li:hover {
+            padding-left: 3.5rem;
+            border-color: var(--accent-primary);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.1);
+        }
+
+        .items-list li:hover::before {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .items-list a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .items-list a:hover {
+            color: var(--accent-primary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-category h3 {
+            font-family: 'Archivo', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-secondary);
+        }
+
+        .skill-category p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+            margin-top: 6rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        footer .social-links {
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .bio-content {
+                padding: 2rem;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-indicator {
+                display: none;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        .scroll-indicator span {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'Archivo', sans-serif;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 2px;
+            height: 30px;
+            background: linear-gradient(180deg, var(--accent-primary), transparent);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="Vishal_Profile_Photo.png" alt="Vishal Paul - Professional headshot">
+                </div>
+                <div class="hero-text">
+                    <h1>Vishal Paul</h1>
+                    <p class="tagline">Senior Software Engineer | Software Systems & AI/ML</p>
+                    <p>Welcome! I'm a Senior Software Engineer at PayPal working at the intersection of software systems and AI/ML. I build scalable solutions that implement AI-driven use cases for consumer and credit risk.</p>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/paulvishal" class="social-link" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/paul-vishal" class="social-link" target="_blank">GitHub</a>
+                        <a href="mailto:vispaul@ieee.org" class="social-link">Email</a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                </div>
+                <div class="bio-content">
+                    <p>As a Senior Software Engineer at PayPal, I'm part of the Risk and Identity Organization. I'm currently migrating critical risk use cases, building platform features, and developing use cases for the credit risk and consumer domain. Working at the intersection of software systems and AI/ML, I engineer scalable solutions that integrate machine learning models developed by Data Scientists into production systems through a decision engine. With over 6 years of professional experience and a Master's in Computer Science from University at Buffalo, I bring expertise in building robust, high-performance systems.</p>
+                    
+                    <p>I am passionate about tech and love solving problems using tech. I specialize in building high-performance systems using Java, Python, Spring, and modern ML frameworks.</p>
+                </div>
+
+                <div class="expertise-grid">
+                    <div class="expertise-item">
+                        <h3>🔹 Expertise in</h3>
+                        <p>AI/ML, Machine Learning Systems, Java, Python, Spring, Scalable Architecture</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h3>🔹 Passionate About</h3>
+                        <p>Building systems at the intersection of AI/ML and software engineering, building scalable systems with minimal latency</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h3>🔹 Hobbies</h3>
+                        <p>Biking, Photography, Music, Movies, Hackathons</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Professional Experience</h2>
+                    <p class="section-subtitle">Career highlights and key roles</p>
+                </div>
+                <ul class="items-list">
+                    <li>
+                        <strong style="color: var(--accent-primary); font-size: 1.2rem;">Senior Software Engineer - PayPal</strong><br>
+                        <span style="color: var(--text-muted);">February 2023 – Present | Wilmington, Delaware</span><br>
+                        Led implementation of Friction Score usecase leveraging real-time online ML model to predict conversion success of users. Engineered decision systems for Credit Risk and Consumer use cases. Delivered $5.68M-$19.87M in annual revenue gains and $71M+ incremental TPV with sub-100ms latency and 99.9% uptime.
+                    </li>
+                    <li>
+                        <strong style="color: var(--accent-primary); font-size: 1.2rem;">Machine Learning Platform Intern - PayPal</strong><br>
+                        <span style="color: var(--text-muted);">May 2022 – August 2022 | San Jose, California</span><br>
+                        Designed and developed Spring and Flask-based ML model inferencing web application, reducing processing time from 1 hour to 2 seconds through multi-threaded asynchronous processing. Researched efficient deployment of Image and Video classification models using Seldon-core and Docker.
+                    </li>
+                    <li>
+                        <strong style="color: var(--accent-primary); font-size: 1.2rem;">Software Engineer II - Cisco Systems</strong><br>
+                        <span style="color: var(--text-muted);">February 2019 – July 2021 | Bengaluru, India</span><br>
+                        Developed and maintained Java Spring-based Athena and Hybrid-Logging microservices for WebEx video mesh analytics. Led system upgrades, bug fixes, and feature development using Spring, InfluxDB, Kafka, Docker, Jenkins, and ELK. Spearheaded continuous integration in production and FedRAMP environments. Built a media quality analytics dashboard using Django and ReactJS for Meetings SRE team.
+                    </li>
+                    <li>
+                        <strong style="color: var(--accent-primary); font-size: 1.2rem;">Software Engineer - Wipro Technologies</strong><br>
+                        <span style="color: var(--text-muted);">August 2017 – February 2019 | Bengaluru, India</span><br>
+                        Developed web applications for Wipro Holmes AI and automation platform using Spring, Flask, and PostgreSQL. Carried out end-to-end implementation of POC for extracting text from United States' 50 driving license templates using OCR with Keras and Python, achieving 95% accuracy and reducing E-KYC process timeline by 3 days.
+                    </li>
+                    <li>
+                        <strong style="color: var(--accent-primary); font-size: 1.2rem;">Software Engineer Intern - NVIDIA</strong><br>
+                        <span style="color: var(--text-muted);">January 2017 – July 2017 | Pune, India</span><br>
+                        Engineered a web application for inspecting bugs and generating reports, dashboards, and scheduled email delivery system using ASP.Net and MySQL. Introduced features to identify pending bugs, regression bugs, and turnaround time in DirectX team, streamlining management workflow in triaging, tracking, and reporting.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Education</h2>
+                </div>
+                <ul class="items-list">
+                    <li>
+                        <strong style="color: var(--accent-primary); font-size: 1.2rem;">Master of Science in Computer Science</strong><br>
+                        <span style="color: var(--text-muted);">University at Buffalo, State University of New York | August 2021 – December 2022</span><br>
+                        Advanced coursework in AI, Machine Learning, Algorithms, and Software Engineering
+                    </li>
+                    <li>
+                        <strong style="color: var(--accent-primary); font-size: 1.2rem;">Bachelor of Engineering in Information Technology</strong><br>
+                        <span style="color: var(--text-muted);">Birla Institute of Technology, Mesra | July 2013 – June 2017</span><br>
+                        Foundation in Computer Science and Engineering
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <p class="section-subtitle">Core competencies and technologies</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <p>Java, Python</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Frameworks & Technologies</h3>
+                        <p>Spring, Django, Flask, ASP.Net, Kafka, TensorFlow, React</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>AI Tools</h3>
+                        <p>Building tools and systems using Agentic AI, MCP, LLMs (ChatGPT, Gemini, Claude)</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Cloud & DevOps</h3>
+                        <p>AWS, GCP, Azure, Docker, Kubernetes, Jenkins</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Databases</h3>
+                        <p>MySQL, PostgreSQL, InfluxDB</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools</h3>
+                        <p>Git, ELK Stack, Apache SOLR, Seldon-Core, DSL Framework</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="judging">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Judging & Peer Review</h2>
+                    <p class="section-subtitle">Conference reviewing, hackathon judging, and industry awards</p>
+                </div>
+
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="font-family: 'Archivo', sans-serif; font-size: 1.5rem; color: var(--accent-secondary); margin-bottom: 1.5rem;">Conference Peer Review</h3>
+                    <ul class="items-list">
+                        <li>
+                            <strong style="color: var(--accent-primary); font-size: 1.1rem;">International Conference on Data Science and AI for Social Good and Responsible Innovation (DASGRI-2026)</strong><br>
+                            <span style="color: var(--text-muted);">Program Committee Member & Peer Reviewer | 10 papers reviewed</span><br>
+                            Hybrid conference at Goldsmiths, University of London (April 10-11, 2026). Focus on responsible AI application for societal challenges. Accepted papers published in Springer's Lecture Notes in Networks and Systems (LNNS).
+                        </li>
+                        <li>
+                            <strong style="color: var(--accent-primary); font-size: 1.1rem;">IEEE 1st International Conference on Recent Trends in Computing and Smart Mobility (RCSM 2025)</strong><br>
+                            <span style="color: var(--text-muted);">Technical Program Committee Member & Peer Reviewer | 11 papers reviewed</span><br>
+                            IEEE-sponsored conference at MANIT Bhopal, India (December 5-6, 2025). Papers submitted to IEEE Xplore Digital Library with Scopus indexing. Focus on AI, machine learning, cloud computing, and smart mobility technologies.
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="font-family: 'Archivo', sans-serif; font-size: 1.5rem; color: var(--accent-secondary); margin-bottom: 1.5rem;">Industry Awards Judging</h3>
+                    <ul class="items-list">
+                        <li>
+                            <strong style="color: var(--accent-primary); font-size: 1.1rem;">2025 Globee Awards Judge</strong><br>
+                            <span style="color: var(--text-muted);">Business Awards | Impact Awards | Leadership Awards</span><br>
+                            Evaluated global business excellence across multiple award categories.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="font-family: 'Archivo', sans-serif; font-size: 1.5rem; color: var(--accent-secondary); margin-bottom: 1.5rem;">Hackathon Judging</h3>
+                    <ul class="items-list">
+                        <li>
+                            <strong style="color: var(--accent-primary);">ASU Fall 2025 Hackathon</strong> - Opportunity Hack (Arizona State University)
+                            <br><a href="https://www.ohack.dev/hack/2025_fall" target="_blank" style="color: var(--accent-primary); text-decoration: none;">→ ohack.dev</a>
+                        </li>
+                        <li>
+                            <strong style="color: var(--accent-primary);">PennApps</strong> - University of Pennsylvania
+                            <br><a href="https://pennapps.com/" target="_blank" style="color: var(--accent-primary); text-decoration: none;">→ pennapps.com</a>
+                        </li>
+                        <li>
+                            <strong style="color: var(--accent-primary);">UBHacking</strong> - University at Buffalo
+                            <br><a href="https://ubhacking.cse.buffalo.edu/" target="_blank" style="color: var(--accent-primary); text-decoration: none;">→ ubhacking.cse.buffalo.edu</a>
+                        </li>
+                        <li>
+                            <strong style="color: var(--accent-primary);">Internet of Agents</strong> - LabLabAI
+                            <br><a href="https://lablab.ai/event/internet-of-agents" target="_blank" style="color: var(--accent-primary); text-decoration: none;">→ lablab.ai</a>
+                        </li>
+                        <li>
+                            <strong style="color: var(--accent-primary);">Agents on Arc</strong> - LabLabAI
+                            <br><a href="https://lablab.ai/event/ai-agents-arc-usdc" target="_blank" style="color: var(--accent-primary); text-decoration: none;">→ lablab.ai</a>
+                        </li>
+                        <li>
+                            <strong style="color: var(--accent-primary);">AI Genesis</strong> - LabLabAI
+                            <br><a href="https://lablab.ai/event/ai-genesis" target="_blank" style="color: var(--accent-primary); text-decoration: none;">→ lablab.ai</a>
+                        </li>
+                        <li>
+                            <strong style="color: var(--accent-primary);">Agentic AI Hackathon with IBM WatsonX Orchestrate</strong> - LabLabAI
+                            <br><a href="https://lablab.ai/event/agentic-ai-hackathon-ibm-watsonx-orchestrate" target="_blank" style="color: var(--accent-primary); text-decoration: none;">→ lablab.ai</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="memberships">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Professional Memberships</h2>
+                    <p class="section-subtitle">Leadership roles in professional organizations</p>
+                </div>
+                <ul class="items-list">
+                    <li>
+                        <strong style="color: var(--accent-primary); font-size: 1.2rem;">IEEE Senior Member</strong><br>
+                        <span style="color: var(--text-muted);">Since August 2025</span><br>
+                        Senior membership status in the Institute of Electrical and Electronics Engineers, the world's largest technical professional organization.
+                        <br><a href="https://www.ieee.org/" target="_blank" style="color: var(--accent-primary); text-decoration: none;">→ ieee.org</a>
+                    </li>
+                    <li>
+                        <strong style="color: var(--accent-primary); font-size: 1.2rem;">Fellow - Soft Computing Research Society</strong><br>
+                        <span style="color: var(--text-muted);">Since November 2025</span><br>
+                        Fellow recognition from SCRS for contributions to soft computing research and applications.
+                        <br><a href="https://scrs.in/" target="_blank" style="color: var(--accent-primary); text-decoration: none;">→ scrs.in</a>
+                    </li>
+                    <li>
+                        <strong style="color: var(--accent-primary); font-size: 1.2rem;">Fellow - Hackathon Raptors</strong><br>
+                        <span style="color: var(--text-muted);">Since October 2025</span><br>
+                        Fellowship for demonstrated excellence in software engineering and innovation through competitive coding.
+                        <br><a href="https://www.raptors.dev/" target="_blank" style="color: var(--accent-primary); text-decoration: none;">→ raptors.dev</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Vishal Paul | All Rights Reserved</p>
+            <p>📧 Email: vispaul@ieee.org</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/paulvishal" class="social-link" target="_blank">LinkedIn</a>
+                <a href="https://github.com/paul-vishal" class="social-link" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
