@@ -68,7 +68,7 @@
             gap: 4rem;
             align-items: center;
             animation: fadeInUp 1s ease-out;
-            padding-bottom: 5rem;
+            padding-bottom: 0.5rem;
         }
 
         @keyframes fadeInUp {
@@ -180,6 +180,10 @@
         section {
             padding: 6rem 0;
             border-top: 1px solid var(--border-color);
+        }
+
+        #about {
+            padding-top: 2rem;
         }
 
         .section-header {
@@ -371,6 +375,84 @@
             font-weight: 300;
         }
 
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.15);
+        }
+
+        .project-card h3 {
+            font-family: 'Archivo', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--accent-primary);
+        }
+
+        .project-card .tech-stack {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            font-weight: 300;
+        }
+
+        .project-card a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .project-card a:hover {
+            transform: translateX(5px);
+        }
+
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
@@ -420,7 +502,7 @@
 
         .scroll-indicator {
             position: absolute;
-            bottom: 2rem;
+            bottom: 0.5rem;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -477,6 +559,12 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <div class="scroll-indicator">
                 <span>Scroll to explore</span>
             </div>
@@ -603,6 +691,40 @@
             </div>
         </section>
 
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Projects</h2>
+                    <p class="section-subtitle">Academic and personal software projects</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Annapurna</h3>
+                        <p class="tech-stack">JavaScript, React, Node.js, AI/ML</p>
+                        <p>AI-powered meal planner with smart inventory tracking. Suggests personalized recipes based on available ingredients and dietary preferences, helping users reduce food waste.</p>
+                        <a href="https://github.com/paul-vishal/Annapurn" target="_blank">→ View on GitHub</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Waldo</h3>
+                        <p class="tech-stack">Python, Kafka, Docker, Pub-Sub</p>
+                        <p>Distributed system for automated wallpaper updates using Wallhaven APIs. Real-time delivery through Apache Kafka enables users to receive fresh, curated wallpapers automatically.</p>
+                        <a href="https://github.com/paul-vishal/waldo" target="_blank">→ View on GitHub</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>LabRet</h3>
+                        <p class="tech-stack">Python, Django, Apache Solr, AWS Comprehend</p>
+                        <p>COVID-19 Twitter analysis platform with faceted search and sentiment analysis. Helps users discover insights from millions of conversations about COVID-19 and vaccines.</p>
+                        <a href="https://github.com/paul-vishal/LabRet" target="_blank">→ View on GitHub</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Social Unrest Predictor</h3>
+                        <p class="tech-stack">Python, NLP, NER</p>
+                        <p>Deep learning system predicting social protests with 68% accuracy using ACLED data. Helps analysts and policymakers anticipate unrest and allocate resources proactively.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="judging">
             <div class="container">
                 <div class="section-header">
@@ -709,9 +831,4 @@
             <p>📧 Email: vispaul@ieee.org</p>
             <div class="social-links">
                 <a href="https://linkedin.com/in/paulvishal" class="social-link" target="_blank">LinkedIn</a>
-                <a href="https://github.com/paul-vishal" class="social-link" target="_blank">GitHub</a>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
+          
