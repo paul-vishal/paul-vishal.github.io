@@ -348,6 +348,65 @@
             color: var(--accent-primary);
         }
 
+        .hackathon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .hackathon-card {
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: 200px;
+            justify-content: center;
+        }
+
+        .hackathon-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15);
+        }
+
+        .hackathon-card a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Archivo', sans-serif;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .hackathon-card a:hover {
+            color: var(--accent-secondary);
+        }
+
+        .hackathon-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 968px) {
+            .hackathon-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hackathon-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -761,29 +820,36 @@
 
                 <div>
                     <h3 style="font-family: 'Archivo', sans-serif; font-size: 1.5rem; color: var(--accent-secondary); margin-bottom: 1.5rem;">Hackathon Judging</h3>
-                    <ul class="items-list">
-                        <li>
-                            <a href="https://www.ohack.dev/hack/2025_fall" target="_blank" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;"><strong>ASU Fall 2025 Hackathon</strong></a> - Opportunity Hack (Arizona State University)
-                        </li>
-                        <li>
-                            <a href="https://pennapps.com/" target="_blank" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;"><strong>PennApps</strong></a> - University of Pennsylvania
-                        </li>
-                        <li>
-                            <a href="https://ubhacking.cse.buffalo.edu/" target="_blank" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;"><strong>UBHacking</strong></a> - University at Buffalo
-                        </li>
-                        <li>
-                            <a href="https://lablab.ai/event/internet-of-agents" target="_blank" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;"><strong>Internet of Agents</strong></a> - LabLabAI
-                        </li>
-                        <li>
-                            <a href="https://lablab.ai/event/ai-agents-arc-usdc" target="_blank" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;"><strong>Agents on Arc</strong></a> - LabLabAI
-                        </li>
-                        <li>
-                            <a href="https://lablab.ai/event/ai-genesis" target="_blank" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;"><strong>AI Genesis</strong></a> - LabLabAI
-                        </li>
-                        <li>
-                            <a href="https://lablab.ai/event/agentic-ai-hackathon-ibm-watsonx-orchestrate" target="_blank" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;"><strong>Agentic AI Hackathon with IBM WatsonX Orchestrate</strong></a> - LabLabAI
-                        </li>
-                    </ul>
+                    <div class="hackathon-grid">
+                        <div class="hackathon-card">
+                            <a href="https://www.ohack.dev/hack/2025_fall" target="_blank"><strong>ASU Fall 2025 Hackathon</strong></a>
+                            <p>Opportunity Hack<br>Arizona State University</p>
+                        </div>
+                        <div class="hackathon-card">
+                            <a href="https://pennapps.com/" target="_blank"><strong>PennApps</strong></a>
+                            <p>University of Pennsylvania</p>
+                        </div>
+                        <div class="hackathon-card">
+                            <a href="https://ubhacking.cse.buffalo.edu/" target="_blank"><strong>UBHacking</strong></a>
+                            <p>University at Buffalo</p>
+                        </div>
+                        <div class="hackathon-card">
+                            <a href="https://lablab.ai/event/internet-of-agents" target="_blank"><strong>Internet of Agents</strong></a>
+                            <p>LabLabAI</p>
+                        </div>
+                        <div class="hackathon-card">
+                            <a href="https://lablab.ai/event/ai-agents-arc-usdc" target="_blank"><strong>Agents on Arc</strong></a>
+                            <p>LabLabAI</p>
+                        </div>
+                        <div class="hackathon-card">
+                            <a href="https://lablab.ai/event/ai-genesis" target="_blank"><strong>AI Genesis</strong></a>
+                            <p>LabLabAI</p>
+                        </div>
+                        <div class="hackathon-card">
+                            <a href="https://lablab.ai/event/agentic-ai-hackathon-ibm-watsonx-orchestrate" target="_blank"><strong>Agentic AI Hackathon<br>IBM WatsonX Orchestrate</strong></a>
+                            <p>LabLabAI</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
